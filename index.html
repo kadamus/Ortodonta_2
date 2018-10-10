@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo|Spirax" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <header id="nav">
+        <nav>
+            <ul>
+                <li data-scroll="home"><a href="">Anita Szperling</a></li>
+            </ul>
+
+            <ul>
+                <li data-scroll="omnie"><a href="">O mnie</a></li>
+                <li data-scroll="ortodoncja"><a href="">Ortodoncja</a></li>
+                <li data-scroll="contact"><a href="">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <section id="first" data-anchor="home">
+                <div id="top-main">
+                    <h1>Ortodonta</h1>
+                    <span><a href="#ortodoncja">dowiedz się więcej</a></span>
+                </div>
+            </section>
+            <section id="omnie" data-anchor="omnie">
+                <span>O mnie</span>
+                <div class="omnie">
+                    <div class="img"></div>
+                    <div class="omnie-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu erat nisl. Aenean sed dignissim purus. Mauris gravida, ipsum et cursus bibendum, justo dolor elementum nisl, sed placerat risus tellus cursus nisi. Aliquam erat volutpat. In sed augue risus. Vestibulum mattis nunc ac urna condimentum lobortis. Duis ac eros eget metus porta scelerisque. Vivamus tincidunt, nunc in lacinia viverra, leo nibh sollicitudin lorem, quis aliquet libero justo id quam. Morbi posuere cursus quam eu aliquet. Ut dolor mauris, lacinia et lacinia vitae, elementum in nibh. Aliquam accumsan felis id felis molestie pellentesque. Morbi dignissim mauris a nibh finibus, eleifend posuere lectus convallis.</div>
+                </div>
+            </section>
+            <section id="ortodoncja" data-anchor="ortodoncja">
+                <div class="ortodoncja-box">
+                    <span>Ortodoncja</span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu erat nisl. Aenean sed dignissim purus. Mauris gravida, ipsum et cursus bibendum, justo dolor elementum nisl, sed placerat risus tellus cursus nisi. Aliquam erat volutpat. In sed augue risus. Vestibulum mattis nunc ac urna condimentum lobortis. Duis ac eros eget metus porta scelerisque. Vivamus tincidunt, nunc in lacinia viverra, leo nibh sollicitudin lorem, quis aliquet libero justo id quam. Morbi posuere cursus quam eu aliquet. Ut dolor mauris, lacinia et lacinia vitae, elementum in nibh. Aliquam accumsan felis id felis molestie pellentesque. Morbi dignissim mauris a nibh finibus, eleifend posuere lectus convallis.</p>
+                </div>
+
+            </section>
+            <section id="contact" data-anchor="contact">
+                <div class="contact-box">
+                    <span>Kontakt</span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu erat nisl. Aenean sed dignissim purus. Mauris gravida, ipsum et cursus bibendum, justo dolor elementum nisl, sed placerat risus tellus cursus nisi. Aliquam erat volutpat. In sed augue risus. Vestibulum mattis nunc ac urna condimentum lobortis. Duis ac eros eget metus porta scelerisque. Vivamus tincidunt, nunc in lacinia viverra, leo nibh sollicitudin lorem, quis aliquet libero justo id quam. Morbi posuere cursus quam eu aliquet. Ut dolor mauris, lacinia et lacinia vitae, elementum in nibh. Aliquam accumsan felis id felis molestie pellentesque. Morbi dignissim mauris a nibh finibus, eleifend posuere lectus convallis.</p>
+                </div>
+            </section>
+        </article>
+
+    </main>
+    <footer>
+
+    </footer>
+
+</body>
+<script>
+    $(document).ready(function() {
+
+        window.onscroll = function() {
+            myFunction()
+        };
+        var nav = document.getElementById('nav');
+        var sticky = nav.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+                nav.classList.add("sticky");
+            } else {
+                nav.classList.remove("sticky");
+            }
+        };
+        $('nav li').on('click', function() {
+            var scrollAnchor = $(this).attr('data-scroll'),
+                scrollPoint = $('section[data-anchor="' + scrollAnchor + '"]').offset().top - 100;
+            $('body,html').animate({
+                scrollTop: scrollPoint
+            }, 500);
+            return false;
+        })
+        $(window).scroll(function() {
+            var windscroll = $(window).scrollTop();
+            if (windscroll >= 100) {
+                $('section').each(function(i) {
+                    if ($(this).position().top <= windscroll) {
+                        $('nav li.active').removeClass('active');
+                        $('nav li').eq(i).addClass('active');
+                    }
+                });
+
+            } else {
+                $('nav li.active').removeClass('active');
+                $('nav li:first').addClass('active');
+            }
+        }).scroll();
+
+    });
+</script>
+</html>
